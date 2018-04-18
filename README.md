@@ -28,7 +28,7 @@ If you get a message "gulp: command not found", install gulp globally by running
 ├── .gitignore                              # git ignore files to ignore some common files
 ├── gulpfile.js                             # gulp file (adjust to your needs)
 ├── LICENSE                                 # MIT licence file
-├── package.json                            # your package .json file
+├── package.json                            # your package.json file (modify for your project)
 └── readme.md                               # yours truly!
 
 ```
