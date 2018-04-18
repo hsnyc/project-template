@@ -1,0 +1,5 @@
+#ignore node_modules dir
+node_modules/
+
+#ignore other pesky files
+.DS_Store

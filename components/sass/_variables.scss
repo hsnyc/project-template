@@ -1,0 +1,42 @@
+// _variables.scss
+// =================
+
+//FONTS
+//======== 
+
+/*
+    font-family: work sans, sans-serif;
+    font-style: normal;
+
+    Font Weight
+    Light: 300
+    Regular: 400
+    Bold: 700
+*/
+
+//Google Font import
+@import "https://fonts.googleapis.com/css?family=Work+Sans:300,400,700";
+
+// $headFont : 'Work Sans', sans-serif;
+$bodyFont : 'Work Sans', sans-serif;
+
+
+//Colors
+$blue          : #0075C9;
+$midblue       : #00B3E3;
+$lightblue     : #AEECEF;
+
+$dark           :#3B3D40;
+$charcoal       :#65646A;
+$lightgrey      :#CCCCCC;
+$smoke          :#F9F9F9;
+
+$orange         :#FFC658;
+$yellow         :#F6F59C;
+$red            :#EA6852;
+
+$lightGreen    : #7AE582;
+$green         : #2C975A;
+$purple        : #7C77B9;
+
+/* Var Ends */

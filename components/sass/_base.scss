@@ -1,0 +1,84 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $bodyFont;
+  // background-color: $blue;
+  color: $charcoal;
+}
+
+//Atoms
+
+h1, h2, h3, h4, h5 {
+  font-weight: normal;
+}
+
+p {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 1.4em;
+}
+
+button {
+  background-color: $midblue;
+  border: none;
+  border-radius: 100px;
+  color: #fff;
+  font-weight: 300;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 15px 46px;
+  transition: opacity 0.5s ease;
+
+  &:hover {
+    opacity: 0.8;
+}
+
+}
+
+//Organisms
+
+section {
+  background-color: $smoke;
+}
+
+/* make a grid */
+.wrapper {
+  width: 100%;
+  // max-width: 1200px;
+  // margin: 0 auto;
+  // display: grid;
+  // grid-template-columns: 1fr;
+  /* IE10 Support */
+  // -ms-grid-columns: 1fr;
+}
+
+.wrapper > * {
+  // color: #fff;
+  // padding: 20px;
+  // font-size: 150%;
+  /* needed for the floated layout*/
+  // margin-bottom: 10px;
+}
+
+//ClearFix Updated
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+//old versions of IE check
+.outdatedbrowser {
+  margin: 0 auto;
+  background: #ccc;
+  color: $blue;
+  padding: 1em;
+  text-align: center;
+
+  & a {
+    color: $red;
+  }
+}
