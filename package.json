@@ -1,11 +1,11 @@
 {
-  "name": "workcompworks",
+  "name": "project-template",
   "version": "0.0.1",
-  "description": "WorkCompWorks Landing Page",
+  "description": "Starter files for your next project",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/health-e-systems/workcompworks.git"
+    "url": "https://github.com/hsnyc/project-template.git"
   },
   "author": "Henry Sanchez",
   "license": "ISC",
