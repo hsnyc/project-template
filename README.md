@@ -38,13 +38,4 @@ If you get a message "gulp: command not found", install gulp globally by running
 **April 18, 2018**
 - Layout based on Flexbox. Will update to Grid once MS catches up.
 - Nav menu built with vanilla Javascript, no JQuery required :)
-- Using Sass for my css pre-processor.
-
-Layout based on Flexbox
-```
-vanilla Javascript
-```
-css pre-processor
-```
-docker-compose up
-```
+- Using Sass to do css pre-processing.
