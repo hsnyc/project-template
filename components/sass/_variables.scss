@@ -4,21 +4,21 @@
 //FONTS
 //======== 
 
+@import "https://fonts.googleapis.com/css?family=Nunito+Sans";
+/* https://fonts.googleapis.com/css?family=Space+Mono */
 /*
-    font-family: work sans, sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
     font-style: normal;
 
-    Font Weight
-    Light: 300
-    Regular: 400
-    Bold: 700
+    Font Weights:
+    - Regular
+    - Regular Italic
+    - Bold
+    - Bold Italic
 */
 
-//Google Font import
-@import "https://fonts.googleapis.com/css?family=Work+Sans:300,400,700";
-
-// $headFont : 'Work Sans', sans-serif;
-$bodyFont : 'Work Sans', sans-serif;
+// $headFont : 'Nunito Sans', sans-serif;
+$bodyFont : 'Nunito Sans', sans-serif;
 
 
 //Colors

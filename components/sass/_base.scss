@@ -42,17 +42,17 @@ button {
 
 section {
   background-color: $smoke;
+  padding: 10px;
 }
 
 /* make a grid */
 .wrapper {
-  width: 100%;
-  // max-width: 1200px;
-  // margin: 0 auto;
-  // display: grid;
-  // grid-template-columns: 1fr;
-  /* IE10 Support */
-  // -ms-grid-columns: 1fr;
+  height: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  align-content: center; 
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .wrapper > * {
@@ -79,6 +79,6 @@ section {
   text-align: center;
 
   & a {
-    color: $red;
+    color: #dd6f53;
   }
 }
