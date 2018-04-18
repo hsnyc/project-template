@@ -1,4 +1,4 @@
-#Starter Template Files 
+# Starter Template Files 
 
 Starter project files for current and future projects. <br>
 These files will be kept up to date based on current trends (or at least I'll try to :)
@@ -33,9 +33,18 @@ If you get a message "gulp: command not found", install gulp globally by running
 
 ```
 
-##NOTES
+## NOTES
 
 **April 18, 2018**
 - Layout based on Flexbox. Will update to Grid once MS catches up.
 - Nav menu built with vanilla Javascript, no JQuery required :)
 - Using Sass for my css pre-processor.
+
+Layout based on Flexbox
+```
+vanilla Javascript
+```
+css pre-processor
+```
+docker-compose up
+```
