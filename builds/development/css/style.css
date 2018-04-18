@@ -409,9 +409,6 @@ section {
   max-width: 1200px;
   margin: 0 auto; }
 
-.wrapper > * {
-  /* needed for the floated layout*/ }
-
 .group:after {
   content: "";
   display: table;
@@ -495,10 +492,6 @@ nav {
   opacity: 1;
   transform: translate(0px, 20px); }
 
-/*==== LOGO ====*/
-/*==== NAV ====*/
-/*==== MAIN BANNER: CAROUSEL/SLIDER ====*/
-/*==== FOOTER ====*/
 /*==== Media Queries ====*/
 /* Large screens ----------- */
 @media only screen and (min-width: 1824px) {

@@ -34,7 +34,7 @@ button {
 
   &:hover {
     opacity: 0.8;
-}
+  }
 
 }
 
@@ -53,14 +53,6 @@ section {
   align-content: center; 
   max-width: 1200px;
   margin: 0 auto;
-}
-
-.wrapper > * {
-  // color: #fff;
-  // padding: 20px;
-  // font-size: 150%;
-  /* needed for the floated layout*/
-  // margin-bottom: 10px;
 }
 
 //ClearFix Updated
