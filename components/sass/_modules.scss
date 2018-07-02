@@ -9,9 +9,13 @@ nav {
   }
   
   .logo {
-    // width: 30%;
     flex: 1 1 30%;
-    display: inline-block;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    // flex-flow: row nowrap;
+    // justify-content: center;
+    // align-items: center;
   }
   
   .nav-menu {

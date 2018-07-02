@@ -387,7 +387,7 @@ p {
 .wrapper {
   width: 100%;
   max-width: 1200px;
-  padding: 20px;
+  padding: 10px 20px;
   margin: 0 auto; }
 
 /*=== Buttons ===*/
@@ -428,7 +428,9 @@ nav {
 
 .logo {
   flex: 1 1 30%;
-  display: inline-block; }
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center; }
 
 .nav-menu {
   /* position: relative; */
