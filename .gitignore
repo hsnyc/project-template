@@ -3,3 +3,4 @@ node_modules/
 
 #ignore other pesky files
 .DS_Store
+package-lock.json
