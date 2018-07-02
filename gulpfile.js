@@ -1,27 +1,24 @@
 var gulp = require('gulp'),
-    gutil = require('gulp-util'), //Usefull for loging errors
     concat = require('gulp-concat'), //conbines files
     sass = require('gulp-sass'),
     connect = require('gulp-connect'),
     gulpif = require('gulp-if'),
     uglify = require('gulp-uglify'),
-    minifyHTML = require('gulp-minify-html'),
     imagemin = require('gulp-imagemin'),
     pngcrush = require('imagemin-pngcrush')
-    ;
+;
 
 //create variables
-var env, jsSources, sassSources, htmlSources, sassStyle, outputDir;
+var env, jsSources, sassSources, htmlSources, outputDir;
 
 //create environment variable
 var env = process.env.NODE_ENV || 'development';
 
+//output directory
 if (env === 'development') {
   outputDir = 'builds/development/';
-  sassStyle = 'expanded';
 } else {
   outputDir = 'builds/production/';
-  sassStyle = 'compressed';
 }
 
 //Js file sources
@@ -32,14 +29,13 @@ jsSources = [
 ];
 
 sassSources = ['components/sass/style.scss'];
-htmlSources = [outputDir + '*.html'];
+htmlSources = ['builds/development/*.html'];
 
 
 //Tasks Begin
 
 gulp.task('html', function() {
-  gulp.src('builds/development/*.html')
-  .pipe(gulpif(env === 'production', minifyHTML()))
+  gulp.src(htmlSources)
   .pipe(gulpif(env === 'production', gulp.dest(outputDir)))
   .pipe(connect.reload())
 });
