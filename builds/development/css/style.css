@@ -367,6 +367,31 @@ th {
     - Bold Italic
 */
 /* Var Ends */
+/* FlexBox Cheat Sheet:::::::::::::::::
+  
+flex-flow: [flex-direction] [flex-wrap]
+    - flex-flow: row nowrap;
+
+  flex: [flex-grow] [flex-shrink] [flex-basis] | defaults: 0 1 auto;
+
+    flex-grow: How much of the positive free space does this item get?
+    flex-shrink: How much negative free space can be removed from this item?
+    flex-basis: What is the size of the item before growing and shrinking happens?
+
+    :::Samples:::
+    - flex: 0 1 auto; ( Items will not grow larger than their flex-basis size.
+                        Items use size set on the item, or get the size from the content )
+    - flex: 1 1 auto; (items can grow and fill the container as well as shrink if required)
+    - flex: 1 1 0; (Completely ignore the size set on the item. The items can grow and shrink from a flex-basis of 0)
+    - flex-basis: 200px; (The items can grow and shrink from a flex-basis of 200px)
+
+  align-items: [stretch] | [flex-start] | [flex-end] | [center]
+    - this property will align the items on the cross axis.
+  
+  justify-content: [flex-start] | [flex-end] | [center] | [space-around] | [space-between] | [space-evenly]
+    - this property is used to align the items on the main axis, the direction in which flex-direction has set the flow.
+
+*/
 *, *:before, *:after {
   box-sizing: border-box; }
 
@@ -423,18 +448,17 @@ button {
 nav {
   display: flex;
   flex-flow: row nowrap;
-  flex: 1 1 100px;
   padding: 10px 0; }
 
 .logo {
-  flex: 1 1 30%;
+  flex: 1 1 20%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center; }
 
 .nav-menu {
   /* position: relative; */
-  flex: 3 1 70%;
+  flex: 1 1 80%;
   list-style: none;
   text-align: right;
   margin-right: 20px; }
@@ -488,6 +512,10 @@ nav {
 .show-menu {
   opacity: 1;
   transform: translate(0px, 20px); }
+
+@media screen and (max-width: 960px) {
+  nav {
+    flex: 1 1 auto; } }
 
 /*==== #MAIN-BANNER ====*/
 #main-banner {
