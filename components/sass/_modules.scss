@@ -1,6 +1,6 @@
 /*==== HEADER ====*/
 
-/*==== NAV ====*/
+//Navigation
 nav {
     display: flex;
     flex-flow: row nowrap;
@@ -81,3 +81,16 @@ nav {
     opacity: 1;
     transform: translate(0px, 20px);
   }
+
+/*==== #MAIN-BANNER ====*/
+#main-banner {
+  height: 80vh;
+  background-color: $charcoal;
+}
+
+/*==== #MAIN-SECTION ====*/
+#main-section {
+  background-color: $smoke;
+}
+
+/*==== #SECOND-SECTION ====*/

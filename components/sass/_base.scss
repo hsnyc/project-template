@@ -8,7 +8,7 @@ body {
   color: $charcoal;
 }
 
-//Atoms
+//ATOMS
 
 h1, h2, h3, h4, h5 {
   font-weight: normal;
@@ -21,6 +21,25 @@ p {
   line-height: 1.4em;
 }
 
+
+
+//ORGANISMS
+
+/* section wrapper */
+.wrapper {
+  width: 100%;
+  // display: flex;
+  // flex-flow: column nowrap;
+  // align-content: center; 
+  max-width: 1200px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+
+/*=== Buttons ===*/
+
+/* default button */
 button {
   background-color: $midblue;
   border: none;
@@ -36,23 +55,6 @@ button {
     opacity: 0.8;
   }
 
-}
-
-//Organisms
-
-section {
-  background-color: $smoke;
-  padding: 10px;
-}
-
-/* make a grid */
-.wrapper {
-  height: auto;
-  display: flex;
-  flex-flow: column nowrap;
-  align-content: center; 
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
 //ClearFix Updated
