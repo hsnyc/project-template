@@ -75,13 +75,12 @@ button {
   font-weight: 300;
   font-size: 14px;
   text-transform: uppercase;
-  padding: 15px 46px;
+  // padding: 15px 46px;
   transition: opacity 0.5s ease;
 
   &:hover {
     opacity: 0.8;
   }
-
 }
 
 //ClearFix Updated
