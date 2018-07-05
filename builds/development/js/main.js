@@ -52,3 +52,20 @@ function hideMenu(e) {
     e.stopPropagation();
 }
 
+
+// Mobile NAV Menu
+var roundButton = document.querySelector('#roundButton');
+roundButton.addEventListener("click", showMenu, false);
+
+var flyoutMenu = document.querySelector('#nav-menu');
+// navMenu.addEventListener("click", hideMenu, false);
+
+function showMenu(e) {
+    flyoutMenu.classList.toggle("show");
+    e.stopPropagation();
+}
+
+
+
+
+

@@ -1,3 +1,30 @@
+/* FlexBox Cheat Sheet:::::::::::::::::
+  
+flex-flow: [flex-direction] [flex-wrap]
+    - flex-flow: row nowrap;
+
+  flex: [flex-grow] [flex-shrink] [flex-basis] | defaults: 0 1 auto;
+
+    flex-grow: How much of the positive free space does this item get?
+    flex-shrink: How much negative free space can be removed from this item?
+    flex-basis: What is the size of the item before growing and shrinking happens?
+
+    :::Samples:::
+    - flex: 0 1 auto; ( Items will not grow larger than their flex-basis size.
+                        Items use size set on the item, or get the size from the content )
+    - flex: 1 1 auto; (items can grow and fill the container as well as shrink if required)
+    - flex: 1 1 0; (Completely ignore the size set on the item. The items can grow and shrink from a flex-basis of 0)
+    - flex-basis: 200px; (The items can grow and shrink from a flex-basis of 200px)
+
+  align-items: [stretch] | [flex-start] | [flex-end] | [center]
+    - this property will align the items on the cross axis.
+  
+  justify-content: [flex-start] | [flex-end] | [center] | [space-around] | [space-between] | [space-evenly]
+    - this property is used to align the items on the main axis, the direction in which flex-direction has set the flow.
+
+*/
+
+
 *, *:before, *:after {
   box-sizing: border-box;
 }
@@ -32,7 +59,7 @@ p {
   // flex-flow: column nowrap;
   // align-content: center; 
   max-width: 1200px;
-  padding: 20px;
+  padding:10px 20px;
   margin: 0 auto;
 }
 
@@ -48,13 +75,12 @@ button {
   font-weight: 300;
   font-size: 14px;
   text-transform: uppercase;
-  padding: 15px 46px;
+  // padding: 15px 46px;
   transition: opacity 0.5s ease;
 
   &:hover {
     opacity: 0.8;
   }
-
 }
 
 //ClearFix Updated

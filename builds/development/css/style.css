@@ -367,6 +367,31 @@ th {
     - Bold Italic
 */
 /* Var Ends */
+/* FlexBox Cheat Sheet:::::::::::::::::
+  
+flex-flow: [flex-direction] [flex-wrap]
+    - flex-flow: row nowrap;
+
+  flex: [flex-grow] [flex-shrink] [flex-basis] | defaults: 0 1 auto;
+
+    flex-grow: How much of the positive free space does this item get?
+    flex-shrink: How much negative free space can be removed from this item?
+    flex-basis: What is the size of the item before growing and shrinking happens?
+
+    :::Samples:::
+    - flex: 0 1 auto; ( Items will not grow larger than their flex-basis size.
+                        Items use size set on the item, or get the size from the content )
+    - flex: 1 1 auto; (items can grow and fill the container as well as shrink if required)
+    - flex: 1 1 0; (Completely ignore the size set on the item. The items can grow and shrink from a flex-basis of 0)
+    - flex-basis: 200px; (The items can grow and shrink from a flex-basis of 200px)
+
+  align-items: [stretch] | [flex-start] | [flex-end] | [center]
+    - this property will align the items on the cross axis.
+  
+  justify-content: [flex-start] | [flex-end] | [center] | [space-around] | [space-between] | [space-evenly]
+    - this property is used to align the items on the main axis, the direction in which flex-direction has set the flow.
+
+*/
 *, *:before, *:after {
   box-sizing: border-box; }
 
@@ -387,7 +412,7 @@ p {
 .wrapper {
   width: 100%;
   max-width: 1200px;
-  padding: 20px;
+  padding: 10px 20px;
   margin: 0 auto; }
 
 /*=== Buttons ===*/
@@ -400,7 +425,6 @@ button {
   font-weight: 300;
   font-size: 14px;
   text-transform: uppercase;
-  padding: 15px 46px;
   transition: opacity 0.5s ease; }
   button:hover {
     opacity: 0.8; }
@@ -423,16 +447,18 @@ button {
 nav {
   display: flex;
   flex-flow: row nowrap;
-  flex: 1 1 100px;
-  padding: 10px 0; }
+  padding: 10px 0;
+  align-items: center; }
 
 .logo {
-  flex: 1 1 30%;
-  display: inline-block; }
+  flex: 1 1 20%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center; }
 
 .nav-menu {
   /* position: relative; */
-  flex: 3 1 70%;
+  flex: 1 1 80%;
   list-style: none;
   text-align: right;
   margin-right: 20px; }
@@ -487,6 +513,17 @@ nav {
   opacity: 1;
   transform: translate(0px, 20px); }
 
+/* mobile menu button */
+#roundButton {
+  display: none;
+  background-color: #00B3E3;
+  margin-bottom: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 10px solid #0075C9;
+  outline: none; }
+
 /*==== #MAIN-BANNER ====*/
 #main-banner {
   height: 80vh;
@@ -498,6 +535,45 @@ nav {
 
 /*==== #SECOND-SECTION ====*/
 /*==== Media Queries ====*/
+@media screen and (max-width: 960px) {
+  header {
+    z-index: 8; }
+  nav {
+    padding: 10px 0;
+    align-items: center; }
+  /* mobile menu button */
+  #roundButton {
+    position: fixed;
+    top: 24px;
+    right: 28px;
+    align-self: flex-end;
+    z-index: 9;
+    display: inline-block; }
+  #roundButton:hover {
+    cursor: pointer; }
+  #roundButton:active {
+    border-color: #00B3E3;
+    background-color: #0075C9; }
+  .nav-menu {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    background-color: #CCCCCC;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    transform: translate3d(100vw, 0, 0);
+    transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1); }
+  #nav-menu.show {
+    transform: translate3d(0vw, 0, 0); }
+  .nav-menu li {
+    display: block;
+    padding: 20px; }
+  .nav-menu li:hover {
+    cursor: pointer; } }
+
 /* Large screens ----------- */
 @media only screen and (min-width: 1824px) {
   /* Styles */ }
