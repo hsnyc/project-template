@@ -2,7 +2,7 @@
 This file contains all custom 'home brewed' scripts.
     ============================= */
 
-// NAV Menu Drop Downs
+// NAV Menu Drop Downs =================================
 var navMenu = document.querySelector('.nav-menu');
 
 navMenu.addEventListener('click', dropMenu , false);
@@ -16,6 +16,8 @@ function dropMenu(e) {
         //spin icon
         e.target.children[0].classList.toggle('spin');
 
+        //check for screen size
+
         //show menu
         e.target.children[1].classList.toggle('show-menu');
     }
@@ -25,6 +27,8 @@ function dropMenu(e) {
 
         //spin icon
         e.target.classList.toggle('spin');
+
+        //check for screen size
 
         //show menu
         e.target.nextElementSibling.classList.toggle('show-menu');
@@ -44,6 +48,9 @@ function hideMenu(e) {
         if(e.target !== menu[i] && e.target !== menu[i].children[0]) {
             if(menu[i].children.length !== 0){
                 menu[i].children[0].classList.remove('spin');
+
+                //TODO: check for screen size
+
                 menu[i].children[1].classList.remove('show-menu');
                 //console.log(menu[i]);
             } 
@@ -53,7 +60,7 @@ function hideMenu(e) {
 }
 
 
-// Mobile NAV Menu
+// Mobile NAV Menu ======================================
 var roundButton = document.querySelector('#roundButton');
 roundButton.addEventListener("click", showMenu, false);
 
@@ -62,6 +69,16 @@ var flyoutMenu = document.querySelector('#nav-menu');
 
 function showMenu(e) {
     flyoutMenu.classList.toggle("show");
+
+    //check if menu is showing
+    if (flyoutMenu.classList.contains("show")) { 
+        // if so, then make body bg non-scrollable
+        document.body.style.overflow = "hidden"; 
+    } else {
+        // if not, then make body scrollable
+        document.body.style.overflow = "auto";
+    }
+
     e.stopPropagation();
 }
 
