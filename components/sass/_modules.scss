@@ -23,6 +23,7 @@ nav {
   text-align: right;
   margin-right: 20px;
   z-index: 900;
+  outline: none;
 }
 
 .nav-menu li {
@@ -45,6 +46,7 @@ nav {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .50);
   transition: opacity 400ms cubic-bezier(0.68,-0.08, 0.04, 1.15), transform 400ms cubic-bezier(0.68,-0.08, 0.04, 1.15),
   scale 400ms cubic-bezier(0.68,-0.08, 0.04, 1.15);
+  outline: none;
 }
 
 .sub-menu:after {
