@@ -39,7 +39,7 @@ nav {
   position: absolute;
   color: #fff;
   background-color: #4f5d75;
-  padding: 10px 0;
+  padding: 0;
   border-radius: 4px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .50);
   transition: opacity 400ms cubic-bezier(0.68,-0.08, 0.04, 1.15), transform 400ms cubic-bezier(0.68,-0.08, 0.04, 1.15) ;
@@ -65,6 +65,7 @@ nav {
 }
 
 .sub-menu li:hover {
+  border-radius: 4px;
   background-color: rgb(62, 73, 94);
 }
 
@@ -79,6 +80,11 @@ nav {
 }
 
 .show-menu {
+  opacity: 1;
+  transform: translate(0px, 20px);
+}
+
+.show-mobile-menu {
   opacity: 1;
   transform: translate(0px, 20px);
 }

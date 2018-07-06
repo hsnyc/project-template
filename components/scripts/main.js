@@ -1,8 +1,8 @@
 /* =============================
 This file contains all custom 'home brewed' scripts.
     ============================= */
-// NAV Menu Drop Downs
 
+// NAV Menu Drop Downs
 var navMenu = document.querySelector('.nav-menu');
 
 navMenu.addEventListener('click', dropMenu , false);

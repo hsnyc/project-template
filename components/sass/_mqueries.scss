@@ -50,6 +50,7 @@
     left: 0;
     transform: translate3d(100vw, 0, 0);
     transition: transform .3s cubic-bezier(0, .52, 0, 1);
+    overflow-y: scroll;
   }
 
   #nav-menu.show {
@@ -63,6 +64,19 @@
   
   .nav-menu li:hover {
     cursor: pointer;
+  }
+
+  .sub-menu {
+    opacity: 1;
+    // display: none;
+    // height: 0;
+    overflow: hidden;
+    position: relative;
+    margin-top: 20px;
+  }
+
+  .sub-menu li {
+    text-align: center;
   }
 
 }
