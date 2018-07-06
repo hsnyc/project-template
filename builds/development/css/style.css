@@ -372,24 +372,23 @@ th {
 flex-flow: [flex-direction] [flex-wrap]
     - flex-flow: row nowrap;
 
-  flex: [flex-grow] [flex-shrink] [flex-basis] | defaults: 0 1 auto;
+flex: [flex-grow] [flex-shrink] [flex-basis] | defaults: 0 1 auto;
+  flex-grow: How much of the positive free space does this item get?
+  flex-shrink: How much negative free space can be removed from this item?
+  flex-basis: What is the size of the item before growing and shrinking happens?
 
-    flex-grow: How much of the positive free space does this item get?
-    flex-shrink: How much negative free space can be removed from this item?
-    flex-basis: What is the size of the item before growing and shrinking happens?
+:::Samples:::
+  - flex: 0 1 auto; ( Items will not grow larger than their flex-basis size.
+                      Items use size set on the item, or get the size from the content )
+  - flex: 1 1 auto; (items can grow and fill the container as well as shrink if required)
+  - flex: 1 1 0; (Completely ignore the size set on the item. The items can grow and shrink from a flex-basis of 0)
+  - flex-basis: 200px; (The items can grow and shrink from a flex-basis of 200px)
 
-    :::Samples:::
-    - flex: 0 1 auto; ( Items will not grow larger than their flex-basis size.
-                        Items use size set on the item, or get the size from the content )
-    - flex: 1 1 auto; (items can grow and fill the container as well as shrink if required)
-    - flex: 1 1 0; (Completely ignore the size set on the item. The items can grow and shrink from a flex-basis of 0)
-    - flex-basis: 200px; (The items can grow and shrink from a flex-basis of 200px)
+align-items: [stretch] | [flex-start] | [flex-end] | [center]
+  - this property will align the items on the cross axis.
 
-  align-items: [stretch] | [flex-start] | [flex-end] | [center]
-    - this property will align the items on the cross axis.
-  
-  justify-content: [flex-start] | [flex-end] | [center] | [space-around] | [space-between] | [space-evenly]
-    - this property is used to align the items on the main axis, the direction in which flex-direction has set the flow.
+justify-content: [flex-start] | [flex-end] | [center] | [space-around] | [space-between] | [space-evenly]
+  - this property is used to align the items on the main axis, the direction in which flex-direction has set the flow.
 
 */
 *, *:before, *:after {
@@ -417,7 +416,7 @@ p {
 
 /*=== Buttons ===*/
 /* default button */
-button {
+.button {
   background-color: #00B3E3;
   border: none;
   border-radius: 100px;
@@ -425,8 +424,9 @@ button {
   font-weight: 300;
   font-size: 14px;
   text-transform: uppercase;
+  padding: 15px 46px;
   transition: opacity 0.5s ease; }
-  button:hover {
+  .button:hover {
     opacity: 0.8; }
 
 .group:after {
@@ -476,7 +476,7 @@ nav {
   position: absolute;
   color: #fff;
   background-color: #4f5d75;
-  padding: 10px 0;
+  padding: 0;
   border-radius: 4px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   transition: opacity 400ms cubic-bezier(0.68, -0.08, 0.04, 1.15), transform 400ms cubic-bezier(0.68, -0.08, 0.04, 1.15); }
@@ -499,6 +499,7 @@ nav {
   padding: 10px 20px; }
 
 .sub-menu li:hover {
+  border-radius: 4px;
   background-color: #3e495e; }
 
 .menu-icon {
@@ -510,6 +511,10 @@ nav {
   -ms-transform: rotate(180deg); }
 
 .show-menu {
+  opacity: 1;
+  transform: translate(0px, 20px); }
+
+.show-mobile-menu {
   opacity: 1;
   transform: translate(0px, 20px); }
 
@@ -565,14 +570,22 @@ nav {
     top: 0;
     left: 0;
     transform: translate3d(100vw, 0, 0);
-    transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1); }
+    transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
+    overflow-y: scroll; }
   #nav-menu.show {
     transform: translate3d(0vw, 0, 0); }
   .nav-menu li {
     display: block;
     padding: 20px; }
   .nav-menu li:hover {
-    cursor: pointer; } }
+    cursor: pointer; }
+  .sub-menu {
+    opacity: 1;
+    overflow: hidden;
+    position: relative;
+    margin-top: 20px; }
+  .sub-menu li {
+    text-align: center; } }
 
 /* Large screens ----------- */
 @media only screen and (min-width: 1824px) {
