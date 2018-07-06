@@ -4,6 +4,7 @@ This file contains all custom 'home brewed' scripts.
 
 // NAV Menu Drop Downs =================================
 var navMenu = document.querySelector('.nav-menu');
+var sectionHeight;
 
 navMenu.addEventListener('click', dropMenu , false);
 
@@ -17,9 +18,25 @@ function dropMenu(e) {
         e.target.children[0].classList.toggle('spin');
 
         //check for screen size
+        if(window.screen.width <= 960) {
 
-        //show menu
-        e.target.children[1].classList.toggle('show-menu');
+            if(e.target.children[1].classList.contains('show-mobile-menu')) {
+                //if mobile menu is showing then collapse it
+                e.target.children[1].removeAttribute("style");
+            
+            } else {
+                //otherwise open it to content height
+                sectionHeight = e.target.children[1].scrollHeight;
+                e.target.children[1].style.height = sectionHeight + 'px';
+            }
+
+            e.target.children[1].classList.toggle('show-mobile-menu');
+
+        } else {
+            //show menu
+            e.target.children[1].classList.toggle('show-menu');
+        }
+
     }
     
     //check for icon click
@@ -29,9 +46,26 @@ function dropMenu(e) {
         e.target.classList.toggle('spin');
 
         //check for screen size
+        if(window.screen.width <= 960) {
+            
+            if(e.target.nextElementSibling.classList.contains('show-mobile-menu')) {
+                //if mobile menu is showing then collapse it
+                e.target.nextElementSibling.removeAttribute("style");
+            
+            } else {
+                //otherwise open it to content height
+                sectionHeight = e.target.nextElementSibling.scrollHeight;
+                e.target.nextElementSibling.style.height = sectionHeight + 'px';
+            }
 
-        //show menu
-        e.target.nextElementSibling.classList.toggle('show-menu');
+            e.target.nextElementSibling.classList.toggle('show-mobile-menu');
+
+
+        } else {
+            //show menu
+            e.target.nextElementSibling.classList.toggle('show-menu');
+        }
+
     }
 
     e.stopPropagation();
@@ -49,10 +83,15 @@ function hideMenu(e) {
             if(menu[i].children.length !== 0){
                 menu[i].children[0].classList.remove('spin');
 
-                //TODO: check for screen size
-
-                menu[i].children[1].classList.remove('show-menu');
-                //console.log(menu[i]);
+                //check for screen size
+                if(window.screen.width <= 960) {
+                    //hide mobile menu
+                    menu[i].children[1].classList.remove('show-mobile-menu');
+                    menu[i].children[1].removeAttribute("style");
+                } else {
+                    menu[i].children[1].classList.remove('show-menu');
+                    //console.log(menu[i]);
+                }
             } 
         }
     }
@@ -60,7 +99,7 @@ function hideMenu(e) {
 }
 
 
-// Mobile NAV Menu ======================================
+// Mobile NAV Flyout Menu ======================================
 var roundButton = document.querySelector('#roundButton');
 roundButton.addEventListener("click", showMenu, false);
 
@@ -81,8 +120,3 @@ function showMenu(e) {
 
     e.stopPropagation();
 }
-
-
-
-
-
