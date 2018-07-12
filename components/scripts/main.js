@@ -2,7 +2,7 @@
 This file contains all custom 'home brewed' scripts.
     ============================= */
 
-// NAV Menu Drop Downs =================================
+// NAV Menu Drop Downs =================================//
 var navMenu = document.querySelector('.nav-menu');
 var sectionHeight;
 
@@ -99,7 +99,7 @@ function hideMenu(e) {
 }
 
 
-// Mobile NAV Flyout Menu ======================================
+// Mobile NAV Flyout Menu ======================================//
 var roundButton = document.querySelector('#roundButton');
 roundButton.addEventListener("click", showMenu, false);
 
@@ -122,5 +122,38 @@ function showMenu(e) {
     }
 
     e.stopPropagation();
+}
+
+// Scroll to Top ============================================= //
+// When the user scrolls down 1020px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+var bttIcon = document.getElementById("btt-icon");
+var bttArrow = document.getElementById("btt-arrow");
+
+function scrollFunction() {
+
+    if (document.body.scrollTop > 1820 || document.documentElement.scrollTop > 1820) {
+        bttIcon.style.display = "block";
+    } else {
+        bttIcon.style.display = "none";
+    }
+}
+
+bttIcon.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    document.querySelector('header').scrollIntoView({
+        behavior: 'smooth'
+    });
+});
+
+bttIcon.addEventListener("mouseover", bounceArrow, false);
+function bounceArrow() {
+    bttArrow.style.animation = "bounceUp .4s ease-in-out infinite";
+}
+bttIcon.addEventListener("mouseout", bounceStop, false);
+function bounceStop() {
+    bttArrow.removeAttribute("style");
 }
 
