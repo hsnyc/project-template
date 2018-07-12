@@ -448,7 +448,12 @@ nav {
   display: flex;
   flex-flow: row nowrap;
   padding: 10px 0;
-  align-items: center; }
+  align-items: center;
+  /* Smoother animations */ }
+  nav *,
+  nav *:before,
+  nav *:after {
+    transform: translate3d(0, 0, 0); }
 
 .logo {
   flex: 1 1 20%;
@@ -523,25 +528,95 @@ nav {
 /* mobile menu button */
 #roundButton {
   display: none;
-  background-color: #00B3E3;
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  background-color: #F9F9F9;
   margin-bottom: 20px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  border: 10px solid #0075C9;
-  outline: none; }
+  border: 4px solid #65646A;
+  outline: none;
+  align-self: flex-end;
+  z-index: 1000; }
 
-/*==== #MAIN-BANNER ====*/
-#main-banner {
-  height: 80vh;
+#roundButton:hover {
+  cursor: pointer; }
+
+#roundButton:active {
+  border-color: #EA6852;
   background-color: #65646A; }
 
-/*==== #MAIN-SECTION ====*/
-#main-section {
-  background-color: #F9F9F9; }
+.navicon-button {
+  display: inline-block;
+  position: relative;
+  transition: .5s/2;
+  cursor: pointer;
+  user-select: none;
+  opacity: .8; }
+  .navicon-button .navicon:before, .navicon-button .navicon:after {
+    transition: .5s/2; }
+  .navicon-button:hover {
+    transition: .5s;
+    opacity: 1; }
+    .navicon-button:hover .navicon:before, .navicon-button:hover .navicon:after {
+      transition: .5s/2; }
+    .navicon-button:hover .navicon:before {
+      top: .725rem; }
+    .navicon-button:hover .navicon:after {
+      top: -.725rem; }
 
-/*==== #SECOND-SECTION ====*/
-/*==== Media Queries ====*/
+.navicon {
+  position: relative;
+  width: 1.5em;
+  height: .3125rem;
+  background: #EA6852;
+  transition: .5s;
+  border-radius: 2.5rem; }
+  .navicon:before, .navicon:after {
+    display: block;
+    content: "";
+    height: .3125rem;
+    width: 1.6rem;
+    background: #EA6852;
+    position: absolute;
+    z-index: -1;
+    transition: top .06s ease-in-out;
+    border-radius: 1rem; }
+  .navicon:before {
+    top: .625rem; }
+  .navicon:after {
+    top: -.625rem; }
+
+.open:not(.steps) .navicon:before,
+.open:not(.steps) .navicon:after {
+  top: 0 !important; }
+
+.open .navicon:before,
+.open .navicon:after {
+  transition: .5s; }
+
+/* Arrow */
+.open.rarr .navicon:before, .open.rarr .navicon:after {
+  width: 1.2rem; }
+
+.open.rarr .navicon:before {
+  transform: rotate(35deg);
+  transform-origin: left top; }
+
+.open.rarr .navicon:after {
+  transform: rotate(-35deg);
+  transform-origin: left bottom; }
+
+.open.rarr .navicon:before {
+  transform: translate3d(0.5em, -1px, 0) rotate(-35deg);
+  transform-origin: right top; }
+
+.open.rarr .navicon:after {
+  transform: translate3d(0.5em, 1px, 0) rotate(35deg);
+  transform-origin: right bottom; }
+
 @media screen and (max-width: 960px) {
   header {
     z-index: 8; }
@@ -550,17 +625,7 @@ nav {
     align-items: center; }
   /* mobile menu button */
   #roundButton {
-    position: fixed;
-    top: 24px;
-    right: 28px;
-    align-self: flex-end;
-    z-index: 1000;
     display: inline-block; }
-  #roundButton:hover {
-    cursor: pointer; }
-  #roundButton:active {
-    border-color: #00B3E3;
-    background-color: #0075C9; }
   .nav-menu {
     opacity: 0;
     position: fixed;
@@ -592,6 +657,18 @@ nav {
   .sub-menu li {
     text-align: center; } }
 
+/*TODO: Move other sections to their own scss file for better management */
+/*==== #MAIN-BANNER ====*/
+#main-banner {
+  height: 80vh;
+  background-color: #65646A; }
+
+/*==== #MAIN-SECTION ====*/
+#main-section {
+  background-color: #F9F9F9; }
+
+/*==== #SECOND-SECTION ====*/
+/*==== Media Queries ====*/
 /* Large screens ----------- */
 @media only screen and (min-width: 1824px) {
   /* Styles */ }
