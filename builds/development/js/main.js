@@ -46,7 +46,7 @@ function dropMenu(e) {
         e.target.classList.toggle('spin');
 
         //check for screen size
-        if(window.screen.width <= 960) {
+        if(document.documentElement.clientWidth <= 960) {
             
             if(e.target.nextElementSibling.classList.contains('show-mobile-menu')) {
                 //if mobile menu is showing then collapse it
@@ -84,7 +84,7 @@ function hideMenu(e) {
                 menu[i].children[0].classList.remove('spin');
 
                 //check for screen size
-                if(window.screen.width <= 960) {
+                if(document.documentElement.clientWidth <= 960) {
                     //hide mobile menu
                     menu[i].children[1].classList.remove('show-mobile-menu');
                     menu[i].children[1].removeAttribute("style");
