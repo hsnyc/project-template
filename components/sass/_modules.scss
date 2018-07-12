@@ -6,6 +6,13 @@ nav {
     flex-flow: row nowrap;
     padding: 10px 0;
     align-items: center;
+
+    /* Smoother animations */
+    & *,
+    & *:before,
+    & *:after {
+      transform: translate3d(0,0,0);
+    }
 }
   
 .logo {
@@ -98,15 +105,184 @@ nav {
 /* mobile menu button */
 #roundButton {
   display: none;
-  background-color: $midblue;
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  background-color: $smoke;
   margin-bottom: 20px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  border: 10px solid $blue;
+  border: 4px solid $charcoal;
   outline: none;
+  align-self: flex-end;
+  z-index: 1000;
 }
 
+#roundButton:hover {
+  cursor: pointer;
+}
+
+#roundButton:active {
+  border-color: $red;
+  background-color: $charcoal;
+}
+
+//navicon code thanks to:
+//https://codepen.io/bennettfeely/pen/twbyA
+.navicon-button {
+  display: inline-block;
+  position: relative;
+  // padding: 2.0625rem 1.5rem;
+  transition: .5s/2;
+  cursor: pointer;
+  user-select: none;
+  opacity: .8;
+
+  .navicon:before, .navicon:after {
+    transition: .5s/2;
+  }
+
+  &:hover {
+    transition: .5s;
+    opacity: 1;
+
+    .navicon:before, .navicon:after {
+      transition: .5s/2;
+    }
+
+    .navicon:before { top: .725rem; }
+    .navicon:after { top: -.725rem; }
+  }
+}
+
+.navicon {
+  position: relative;
+  width: 1.5em;
+  height: .3125rem;
+  background: $red;
+  transition: .5s;
+  border-radius: 2.5rem;
+
+  &:before, &:after {
+    display: block;
+    content: "";
+    height: .3125rem;
+    width: 1.6rem;
+    background: $red;
+    position: absolute;
+    z-index: -1;
+    transition: top .06s ease-in-out;
+    border-radius: 1rem;
+  }
+
+  &:before { top: .625rem; }
+  &:after { top: -.625rem; }
+}
+
+.open:not(.steps) .navicon:before,
+.open:not(.steps) .navicon:after {
+  top: 0 !important;
+}
+
+.open .navicon:before,
+.open .navicon:after {
+  transition: .5s;
+}
+
+/* Arrow */
+.open.rarr .navicon {
+  &:before, &:after {
+    width: 1.2rem;
+  }
+  &:before {
+    transform: rotate(35deg);
+    transform-origin: left top;
+  }
+  &:after {
+    transform: rotate(-35deg);
+    transform-origin: left bottom;
+  }
+}
+
+.open.rarr .navicon {
+  &:before { 
+    transform: translate3d(.5em,-1px,0) rotate(-35deg);
+    transform-origin: right top;
+  }
+  &:after { 
+    transform: translate3d(.5em,1px,0) rotate(35deg);
+    transform-origin: right bottom;
+  }
+}
+
+
+@media screen and (max-width: 960px) {
+  
+  header {
+    z-index: 8;
+  }
+
+  //Responsive Navigation Menu
+
+  nav {
+    // display: flex;
+    // flex-flow: column nowrap;
+    padding: 10px 0;
+    align-items: center;
+  }
+
+  /* mobile menu button */
+  #roundButton {
+    display: inline-block;
+  }
+
+  .nav-menu {
+    opacity: 0;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    background-color: $lightgrey;
+    margin: 0;
+    padding: 40px 0 0;
+    top: 0;
+    left: 0;
+    transform: translate3d(100vw, 0, 0);
+    transition: transform .3s cubic-bezier(0, .52, 0, 1),
+                opacity .4s cubic-bezier(0, .52, 0, 1);
+    overflow-y: scroll;
+  }
+
+  #nav-menu.show {
+    opacity: 1;
+    transform: translate3d(0vw, 0, 0);
+  }
+
+  .nav-menu li {
+    display: block;
+    padding: 20px;
+  }
+  
+  .nav-menu li:hover {
+    cursor: pointer;
+  }
+
+  .sub-menu {
+    height: 0;
+    opacity: 1;
+    position: relative;
+    overflow: hidden;
+    transition: height 0.3s ease-out, margin 0.3s ease-out;
+  }
+
+  .sub-menu li {
+    text-align: center;
+  }
+
+}
+
+/*TODO: Move other sections to their own scss file for better management */
 
 /*==== #MAIN-BANNER ====*/
 #main-banner {

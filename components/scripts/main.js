@@ -107,7 +107,10 @@ var flyoutMenu = document.querySelector('#nav-menu');
 // navMenu.addEventListener("click", hideMenu, false);
 
 function showMenu(e) {
+    //show the mobile nav menu
     flyoutMenu.classList.toggle("show");
+    //animate the mobile menu icon
+    roundButton.classList.toggle("open");
 
     //check if menu is showing
     if (flyoutMenu.classList.contains("show")) { 
@@ -120,3 +123,4 @@ function showMenu(e) {
 
     e.stopPropagation();
 }
+
