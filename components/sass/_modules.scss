@@ -295,4 +295,73 @@ nav {
   background-color: $smoke;
 }
 
-/*==== #SECOND-SECTION ====*/
+/*==== #Back-to-Top Icon ====*/
+#btt-icon {
+  display: none;
+  width: 46px;
+  height: 50px;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background-color: rgba(136, 136, 136, 0.18); //rgba(126, 126, 126, 0.5);
+  cursor: pointer;
+  border-radius: .2rem;
+  
+  // &:hover {
+  //   animation: bounceUp .4s ease-out infinite;  
+  // }
+}
+
+#btt-arrow {
+  position: relative;
+  top: 8px;
+  left: 20px;
+  width: .4em;
+  height: 2.2rem;
+  background: $red;
+  transition: .5s;
+  border-radius: 2.5rem;
+  z-index: 99;
+  
+  &:before, &:after {
+    display: block;
+    content: "";
+    height: 1.4rem;
+    width: .45rem;
+    background: $red;
+    position: absolute;
+    z-index: 99;
+    transition: .5s .5s/2;
+    border-radius: 1rem;
+  }
+
+  &:before { 
+    // top: .1rem;
+    // right: .5rem;
+    transform: rotate(35deg);
+    transform-origin: left top;
+  }
+  &:after { 
+    // top: -.08rem;
+    left: .8rem;
+    transform: rotate(-35deg);
+    transform-origin: left bottom;
+  }
+}
+
+@keyframes bounceUp {
+  0% {
+      -webkit-transform:translateY(0px);
+      -moz-transform:translateY(0px);
+      -o-transform: translateY(0px);
+      -ms-transform: translateY(0px);
+      transform:  translateY(0px);
+  }
+  100% {
+      -webkit-transform:translateY(-12px);
+      -moz-transform:translateY(-12px);
+      -o-transform: translateY(-12px);
+      -ms-transform: translateY(-12px);
+      transform:  translateY(-12px);
+  }
+}
