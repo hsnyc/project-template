@@ -398,14 +398,31 @@ body {
   font-family: "Nunito Sans", sans-serif;
   color: #65646A; }
 
+h1 {
+  font-size: 40px; }
+
+h2 {
+  font-size: 36px; }
+
+h3 {
+  font-size: 32px; }
+
+h4 {
+  font-size: 28px; }
+
+h5 {
+  font-size: 24px; }
+
 h1, h2, h3, h4, h5 {
-  font-weight: normal; }
+  font-weight: normal;
+  margin: 0;
+  padding: .8em 0 0; }
 
 p {
   font-style: normal;
   font-weight: 300;
   font-size: 20px;
-  line-height: 1.4em; }
+  margin: 18px 0; }
 
 /* section wrapper */
 .wrapper {
@@ -660,7 +677,11 @@ nav {
 /*TODO: Move other sections to their own scss file for better management */
 /*==== #MAIN-BANNER ====*/
 #main-banner {
-  height: 80vh;
+  background-image: url("../images/banner/oskar-krawczyk-172847-unsplash.jpg");
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 648px;
   background-color: #65646A; }
 
 /*==== #MAIN-SECTION ====*/
