@@ -286,7 +286,12 @@ nav {
 
 /*==== #MAIN-BANNER ====*/
 #main-banner {
-  height: 80vh;
+  // Photo by Oskar Krawczyk on Unsplash
+  background-image: url("../images/banner/oskar-krawczyk-172847-unsplash.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 648px; //80vh;
   background-color: $charcoal;
 }
 
