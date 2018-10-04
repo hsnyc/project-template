@@ -679,7 +679,7 @@ nav {
 #main-banner {
   background-image: url("../images/banner/oskar-krawczyk-172847-unsplash.jpg");
   background-position: center;
-  background-size: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
   height: 648px;
   background-color: #65646A; }
