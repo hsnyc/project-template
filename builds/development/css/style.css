@@ -399,19 +399,19 @@ body {
   color: #65646A; }
 
 h1 {
-  font-size: 40px; }
+  font-size: calc(24px + (40 - 24) * ((100vw - 200px) / (1600 - 200))); }
 
 h2 {
-  font-size: 36px; }
+  font-size: calc(22px + (36 - 22) * ((100vw - 200px) / (1600 - 200))); }
 
 h3 {
-  font-size: 32px; }
+  font-size: calc(20px + (32 - 20) * ((100vw - 200px) / (1600 - 200))); }
 
 h4 {
-  font-size: 28px; }
+  font-size: calc(18px + (28 - 18) * ((100vw - 200px) / (1600 - 200))); }
 
 h5 {
-  font-size: 24px; }
+  font-size: calc(16px + (24 - 16) * ((100vw - 200px) / (1600 - 200))); }
 
 h1, h2, h3, h4, h5 {
   font-weight: normal;
@@ -421,8 +421,8 @@ h1, h2, h3, h4, h5 {
 p {
   font-style: normal;
   font-weight: 300;
-  font-size: 20px;
-  margin: 18px 0; }
+  margin: 18px 0;
+  font-size: calc(16px + (22 - 16) * ((100vw - 200px) / (1600 - 200))); }
 
 /* section wrapper */
 .wrapper {
