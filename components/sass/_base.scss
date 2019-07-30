@@ -80,31 +80,88 @@ p {
 
 //ORGANISMS
 
+header {
+  position: relative;
+  z-index: 3;
+  padding: 0 20px;
+  // box-shadow: 0 2px 2px #CCCCCC; /* use when needed */
+}
+
+/*
+  Section used for full width sections
+*/
+
+/*==== Layout ====*/
+
 /* section wrapper */
 .wrapper {
   width: 100%;
-  // display: flex;
-  // flex-flow: column nowrap;
-  // align-content: center; 
   max-width: 1200px;
-  padding:10px 20px;
   margin: 0 auto;
 }
 
+.row-full {
+  width: 100%;
+}
+
+.row-x {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0 10px;
+}
+
+.row-y {
+  width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  padding: 10px 0;
+}
+
+.col-70 {
+  flex: 1 1 70%;
+}
+
+.col-60 {
+  flex: 1 1 60%;
+}
+
+.col-50 {
+  flex: 1 1 50%;
+}
+
+.col-40 {
+  flex: 1 1 40%;
+}
+
+.col-30 {
+  flex: 1 1 30%;
+}
+
+.col-25 {
+  flex: 1 1 25%;
+  min-width: 270px;
+}
+
+.col-auto {
+  flex: 1 1 auto;
+  min-width: 270px;
+}
 
 /*=== Buttons ===*/
 
 /* default button */
 .button {
-  background-color: $midblue;
-  border: none;
-  border-radius: 100px;
-  color: #fff;
   font-weight: 300;
-  font-size: 14px;
-  text-transform: uppercase;
-  padding: 15px 46px;
   transition: opacity 0.5s ease;
+  text-transform: uppercase;
+  background-color: $midblue;
+  padding: 15px 46px;
+  border-radius: 100px;
+  color: $smoke;
+  text-decoration: none;
+  font-size: 24px;
+  border-color: transparent;
 
   &:hover {
     opacity: 0.8;
