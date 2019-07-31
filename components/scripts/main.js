@@ -134,7 +134,7 @@ var bttArrow = document.getElementById("btt-arrow");
 function scrollFunction() {
 
     if (document.body.scrollTop > 1820 || document.documentElement.scrollTop > 1820) {
-        bttIcon.style.display = "block";
+        bttIcon.style.display = "flex";
     } else {
         bttIcon.style.display = "none";
     }
