@@ -440,7 +440,8 @@ header {
   font-size: 24px;
   border-color: transparent; }
   .button:hover {
-    opacity: 0.8; }
+    opacity: 0.8;
+    cursor: pointer; }
 
 .group:after {
   content: "";
@@ -701,6 +702,7 @@ ul.nav-menu li ul li:hover a {
   .mobile-logo {
     display: block; } }
 
+/*==== Logo ====*/
 /*==== #Back-to-Top Icon ====*/
 #btt-icon {
   width: 46px;
@@ -758,7 +760,7 @@ ul.nav-menu li ul li:hover a {
 
 /*==== #MAIN-BANNER ====*/
 #main-banner {
-  background-image: url("../images/banner/oskar-krawczyk-172847-unsplash.jpg");
+  background-image: url("../images/banner/jakob-owens-YV7_BcObbIs-unsplash.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
