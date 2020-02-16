@@ -28,10 +28,6 @@ justify-content: [flex-start] | [flex-end] | [center] | [space-around] | [space-
   box-sizing: border-box;
 }
 
-html {
-  @include fluid-type($min_width, $max_width, $min_font, $max_font);
-}
-
 body {
   font-family: $bodyFont;
   color: $charcoal;
@@ -74,6 +70,7 @@ p {
   font-weight: 300;
   margin: 18px 0;
   line-height: 1.4em;
+  @include fluid-type(320px, 1200px, 16px, 20px);
 }
 
 
