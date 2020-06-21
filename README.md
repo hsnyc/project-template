@@ -1,7 +1,7 @@
 # Starter Template Files 
 
-Starter project files for current and future projects. <br>
-These files will be kept up to date based on current trends (or at least I'll try to :)
+Starter project files for current and future projects<br>
+These files will be kept up to date based on current trends (or at least I'll try :)
 
 
 ## To start
@@ -29,13 +29,17 @@ If you get a message "gulp: command not found", install gulp globally by running
 ├── gulpfile.js                             # gulp file (adjust to your needs)
 ├── LICENSE                                 # MIT licence file
 ├── package.json                            # your package.json file (modify for your project)
-└── readme.md                               # yours truly!
+└── readme.md                               # well, what can I say, its the read me file
 
 ```
 
 ## NOTES
 
+**June 20, 2020**
+- Updated from Gulp 3 to Gulp 4.
+
 **July 30, 2019**
 - Layout based on Flexbox.
 - Nav menu built with vanilla Javascript, no JQuery required.
 - Using Sass to do css pre-processing.
+- Using Gulp as task runner.
