@@ -89,12 +89,19 @@ header {
 */
 
 /*==== Layout ====*/
+section {
+  padding: 0 20px;
+}
 
 /* section wrapper */
 .wrapper {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+footer {
+  padding: 0 20px;
 }
 
 .row-full {
@@ -149,11 +156,13 @@ header {
 
 /* default button */
 .button {
+  display: inline-block;
   font-weight: 300;
   transition: opacity 0.5s ease;
   text-transform: uppercase;
-  background-color: $blue;
+  background-color: $green;
   padding: 15px 46px;
+  margin: 10px 0;
   border-radius: 100px;
   color: $smoke;
   text-decoration: none;

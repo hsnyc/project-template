@@ -9,8 +9,11 @@ const uglify = require('gulp-uglify');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
-var replace = require('gulp-replace');
+const imagemin = require('gulp-imagemin');
+const pngcrush = require('imagemin-pngcrush');
+const gulpif = require('gulp-if');
 const browserSync = require('browser-sync').create();
+var replace = require('gulp-replace');
 
 //create environment variable
 const env = process.env.NODE_ENV || 'development';
@@ -20,13 +23,18 @@ const files = {
   htmlPath: 'builds/development/*.html',
   scssPath: 'components/sass/*.scss',
   jsPath: [
-    'components/scripts/vendor/*.js',
+    'components/scripts/libraries/*.js',
     'components/scripts/*.js'
     // add more sources here if needed.
-  ]
+  ],
+  imgPath: 'builds/development/images/**/*.*'
 }
 
-//output directory
+//other vars
+let cbString; //to use in cacheBust
+let outputDir; //for output directory
+
+//output directory check
 if (env === 'development') {
   outputDir = 'builds/development/';
 } else {
@@ -41,32 +49,41 @@ if (env === 'development') {
 //  ['**/*.js', '!node_modules/**']
 /*  https://gulpjs.com/docs/en/getting-started/explaining-globs */
 
+// HTML task: cacheBust hack in dev and uglify if prod
+function htmlTask(){
+  cbString = new Date().getTime();
+  return src(files.htmlPath)
+      .pipe(gulpif(env === 'development', replace(/cb=\d+/g, 'cb=' + cbString)))
+      .pipe(dest(outputDir))
+}
+
 // Sass task: compiles the style.scss file into style.css
 function scssTask(){    
   return src(files.scssPath)
       .pipe(sourcemaps.init()) // initialize sourcemaps first
       .pipe(sass()) // compile SCSS to CSS
-      .pipe(postcss([ autoprefixer(), cssnano() ])) // PostCSS plugins
+      .pipe(gulpif(env === 'production', postcss([autoprefixer(), cssnano()]))) // autopref & cssnano on prod
       .pipe(sourcemaps.write('.')) // write sourcemaps file in current directory
-      .pipe(dest(outputDir + 'css')
-  ); // put final CSS in dist folder
+      .pipe(dest(outputDir + 'css')); // put final CSS in output folder
 }
 
-// JS task: concatenates and uglifies JS files to script.js
+// JS task: concatenates files to main.js and uglifies on prod
 function jsTask(){
   return src(files.jsPath)
       .pipe(concat('main.js'))
-      .pipe(uglify())
-      .pipe(dest(outputDir + 'js')
-  );
+      .pipe(gulpif(env === 'production', uglify())) //uglify on prod only
+      .pipe(dest(outputDir + 'js'));
 }
 
-// Cachebust
-function cacheBustTask(){
-  var cbString = new Date().getTime();
-  return src(['builds/development/index.html'])
-      .pipe(replace(/cb=\d+/g, 'cb=' + cbString))
-      .pipe(dest(outputDir));
+// Image task: optimize images for production
+function imgTask(){
+  return src(files.imgPath)
+    .pipe(gulpif(env === 'production', imagemin({
+      progressive: true,
+      svgoPlugins: [{ removeViewBox: false }],
+      use: [pngcrush()]
+    })))
+    .pipe(gulpif(env === 'production', dest(outputDir + 'images')))
 }
 
 // Watch task: watch SCSS and JS files for changes
@@ -74,14 +91,12 @@ function cacheBustTask(){
 function watchTask(){
   //start BrowserSync server
   server();
-  //now watch files
-  watch([files.htmlPath, files.scssPath, ...files.jsPath],
-      {interval: 1000, usePolling: true}, //Makes docker work
-      series(
-          parallel(scssTask, jsTask),
-          cacheBustTask
-      )
-  ).on('change', browserSync.reload);
+
+  //now watch each file
+  watch(files.htmlPath, htmlTask).on('change', browserSync.reload);
+  watch(files.scssPath, scssTask).on('change', browserSync.reload);
+  watch(files.jsPath, jsTask).on('change', browserSync.reload);
+  watch(files.imgPath, imgTask).on('change', browserSync.reload);
 }
 
 // https://www.browsersync.io/docs/options#option-server
@@ -92,15 +107,12 @@ function server() {
         index: "index.html"
         //directory: true
     },
-
-    /* Open in specific browser
-      (On MacOS check Applications folder for name) */
+    /* 
+    Open in specific browser
+    (On MacOS check Applications folder for name of app) */
     browser: "FirefoxDeveloperEdition",
-
-    //changing default port (default:3000);
-    port: 8080
-
-    //open: false //<--- set to false to prevent opening browser
+    port: 8080 //<-- changing default port (default:3000);
+    //open: false //<-- enable to prevent opening browser
   });
 }
 
@@ -109,9 +121,10 @@ function server() {
 // then runs cacheBust, then watch task
 
 exports.default = series(
-  parallel(scssTask, jsTask), 
-  cacheBustTask,
+  htmlTask,
+  parallel(scssTask, jsTask, imgTask),
   watchTask
 );
 
+//Server can be started here or in Watch Task
 // exports.build = server();
