@@ -1,4 +1,3 @@
-
 // Initialize modules
 // Importing specific gulp API functions lets us write them below as series() instead of gulp.series()
 const { src, dest, watch, series, parallel } = require('gulp');
@@ -27,7 +26,6 @@ const files = {
   ]
 }
 
-
 //output directory
 if (env === 'development') {
   outputDir = 'builds/development/';
@@ -42,7 +40,6 @@ if (env === 'development') {
 /*  Negative globs can be used as an alternative for restricting double-star globs. */
 //  ['**/*.js', '!node_modules/**']
 /*  https://gulpjs.com/docs/en/getting-started/explaining-globs */
-
 
 // Sass task: compiles the style.scss file into style.css
 function scssTask(){    
@@ -67,7 +64,7 @@ function jsTask(){
 // Cachebust
 function cacheBustTask(){
   var cbString = new Date().getTime();
-  return src(['index.html'])
+  return src(['builds/development/index.html'])
       .pipe(replace(/cb=\d+/g, 'cb=' + cbString))
       .pipe(dest(outputDir));
 }
@@ -75,13 +72,16 @@ function cacheBustTask(){
 // Watch task: watch SCSS and JS files for changes
 // If any change, run scss and js tasks simultaneously
 function watchTask(){
-  watch([htmlPath, files.scssPath, ...files.jsPath],
+  //start BrowserSync server
+  server();
+  //now watch files
+  watch([files.htmlPath, files.scssPath, ...files.jsPath],
       {interval: 1000, usePolling: true}, //Makes docker work
       series(
           parallel(scssTask, jsTask),
           cacheBustTask
       )
-  ).on('change', browserSync.reload); 
+  ).on('change', browserSync.reload);
 }
 
 // https://www.browsersync.io/docs/options#option-server
@@ -107,9 +107,11 @@ function server() {
 // Export the default Gulp task so it can be run
 // Runs the scss and js tasks simultaneously
 // then runs cacheBust, then watch task
+
 exports.default = series(
-  server,
   parallel(scssTask, jsTask), 
   cacheBustTask,
   watchTask
 );
+
+// exports.build = server();
