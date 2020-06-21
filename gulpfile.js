@@ -54,7 +54,7 @@ function htmlTask(){
   cbString = new Date().getTime();
   return src(files.htmlPath)
       .pipe(gulpif(env === 'development', replace(/cb=\d+/g, 'cb=' + cbString)))
-      .pipe(dest(outputDir))
+      .pipe(dest(outputDir));
 }
 
 // Sass task: compiles the style.scss file into style.css
@@ -83,7 +83,7 @@ function imgTask(){
       svgoPlugins: [{ removeViewBox: false }],
       use: [pngcrush()]
     })))
-    .pipe(gulpif(env === 'production', dest(outputDir + 'images')))
+    .pipe(gulpif(env === 'production', dest(outputDir + 'images')));
 }
 
 // Watch task: watch SCSS and JS files for changes
