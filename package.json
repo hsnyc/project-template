@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Starter project files for current and future projects. <br> These files will be kept up to date based on current trends (or at least I'll try to :)",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "gulp-cli": "^2.3.0"
+  },
   "devDependencies": {
     "autoprefixer": "^9.8.2",
     "browser-sync": "^2.26.7",
