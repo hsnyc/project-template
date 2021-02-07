@@ -16,6 +16,7 @@ const browserSync = require('browser-sync').create();
 var replace = require('gulp-replace');
 
 //create environment variable
+// https://nodejs.org/dist/latest-v8.x/docs/api/process.html#process_process_env
 const env = process.env.NODE_ENV || 'development';
 
 //create variables
@@ -52,7 +53,7 @@ if (env === 'development') {
 // HTML task: cacheBust hack in dev and uglify if prod
 function htmlTask(){
   cbString = new Date().getTime();
-  //console.log(cbString);
+  console.log(cbString);
   return src(files.htmlPath)
       .pipe(gulpif(env === 'development', replace(/cb=\d+/g, 'cb=' + cbString)))
       .pipe(dest(outputDir));
@@ -112,8 +113,8 @@ function server() {
     Open in specific browser
     (On MacOS check Applications folder for name of app) */
     browser: "FirefoxDeveloperEdition",
-    port: 8080 //<-- changing default port (default:3000);
-    //open: false //<-- enable to prevent opening browser
+    port: 8080, //<-- changing default port (default:3000);
+    open: false //<-- enable to prevent opening browser
   });
 }
 
