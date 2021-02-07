@@ -52,6 +52,7 @@ if (env === 'development') {
 // HTML task: cacheBust hack in dev and uglify if prod
 function htmlTask(){
   cbString = new Date().getTime();
+  //console.log(cbString);
   return src(files.htmlPath)
       .pipe(gulpif(env === 'development', replace(/cb=\d+/g, 'cb=' + cbString)))
       .pipe(dest(outputDir));
