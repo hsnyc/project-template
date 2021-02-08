@@ -53,7 +53,7 @@ if (env === 'development') {
 // HTML task: cacheBust hack in dev and uglify if prod
 function htmlTask(){
   cbString = new Date().getTime();
-  console.log(cbString);
+  //console.log(cbString);
   return src(files.htmlPath)
       .pipe(gulpif(env === 'development', replace(/cb=\d+/g, 'cb=' + cbString)))
       .pipe(dest(outputDir));
@@ -119,8 +119,8 @@ function server() {
 }
 
 // Export the default Gulp task so it can be run
-// Runs the scss and js tasks simultaneously
-// then runs cacheBust, then watch task
+// Runs html task then the scss and js tasks simultaneously
+// then watch files
 
 exports.default = series(
   htmlTask,
@@ -128,5 +128,5 @@ exports.default = series(
   watchTask
 );
 
-//Server can be started here or in Watch Task
+//BrowserSync Server can be started here or in Watch Task
 // exports.build = server();
