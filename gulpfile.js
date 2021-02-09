@@ -10,13 +10,18 @@ const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const imagemin = require('gulp-imagemin');
-const pngcrush = require('imagemin-pngcrush');
+// const pngcrush = require('imagemin-pngcrush');
+// const imagemin = require('imagemin');
+// const imageminJpegtran = require('imagemin-jpegtran');
+// const imageminPngquant = require('imagemin-pngquant');
+
 const gulpif = require('gulp-if');
 const browserSync = require('browser-sync').create();
 var replace = require('gulp-replace');
 
 //create environment variable
-const env = process.env.NODE_ENV || 'development';
+// https://nodejs.org/dist/latest-v8.x/docs/api/process.html#process_process_env
+const env = process.env.NODE_ENV || 'production';
 
 //create variables
 const files = {
@@ -52,6 +57,7 @@ if (env === 'development') {
 // HTML task: cacheBust hack in dev and uglify if prod
 function htmlTask(){
   cbString = new Date().getTime();
+  //console.log(cbString);
   return src(files.htmlPath)
       .pipe(gulpif(env === 'development', replace(/cb=\d+/g, 'cb=' + cbString)))
       .pipe(dest(outputDir));
@@ -76,13 +82,24 @@ function jsTask(){
 }
 
 // Image task: optimize images for production
+// https://www.npmjs.com/package/gulp-imagemin
 function imgTask(){
   return src(files.imgPath)
-    .pipe(gulpif(env === 'production', imagemin({
-      progressive: true,
-      svgoPlugins: [{ removeViewBox: false }],
-      use: [pngcrush()]
-    })))
+    .pipe(gulpif(env === 'production', imagemin([
+      imagemin.gifsicle({interlaced: true}),
+      imagemin.mozjpeg({quality: 75, progressive: true}),
+      imagemin.optipng({optimizationLevel: 5}),
+      imagemin.svgo({
+          plugins: [
+              {removeViewBox: false},
+              {cleanupIDs: false}
+          ]
+      })
+    ],
+    {
+      verbose: true
+    }
+  )))
     .pipe(gulpif(env === 'production', dest(outputDir + 'images')));
 }
 
@@ -94,7 +111,7 @@ function watchTask(){
 
   //now watch each file
   watch(files.htmlPath, htmlTask).on('change', browserSync.reload);
-  watch(files.scssPath, scssTask).on('change', browserSync.reload);
+  watch(files.scssPath, series(scssTask, htmlTask)).on('change', browserSync.reload);
   watch(files.jsPath, jsTask).on('change', browserSync.reload);
   watch(files.imgPath, imgTask).on('change', browserSync.reload);
 }
@@ -111,14 +128,14 @@ function server() {
     Open in specific browser
     (On MacOS check Applications folder for name of app) */
     browser: "FirefoxDeveloperEdition",
-    port: 8080 //<-- changing default port (default:3000);
-    //open: false //<-- enable to prevent opening browser
+    port: 8080, //<-- changing default port (default:3000);
+    open: false //<-- enable to prevent opening browser
   });
 }
 
 // Export the default Gulp task so it can be run
-// Runs the scss and js tasks simultaneously
-// then runs cacheBust, then watch task
+// Runs html task then the scss and js tasks simultaneously
+// then watch files
 
 exports.default = series(
   htmlTask,
@@ -126,5 +143,5 @@ exports.default = series(
   watchTask
 );
 
-//Server can be started here or in Watch Task
+//BrowserSync Server can be started here or in Watch Task
 // exports.build = server();
