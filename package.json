@@ -30,8 +30,7 @@
     "gulp-replace": "^1.0.0",
     "gulp-sass": "^4.1.0",
     "gulp-sourcemaps": "^2.6.5",
-    "gulp-uglify": "^3.0.2",
-    "imagemin-pngcrush": "^7.0.0"
+    "gulp-uglify": "^3.0.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

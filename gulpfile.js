@@ -10,14 +10,18 @@ const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const imagemin = require('gulp-imagemin');
-const pngcrush = require('imagemin-pngcrush');
+// const pngcrush = require('imagemin-pngcrush');
+// const imagemin = require('imagemin');
+// const imageminJpegtran = require('imagemin-jpegtran');
+// const imageminPngquant = require('imagemin-pngquant');
+
 const gulpif = require('gulp-if');
 const browserSync = require('browser-sync').create();
 var replace = require('gulp-replace');
 
 //create environment variable
 // https://nodejs.org/dist/latest-v8.x/docs/api/process.html#process_process_env
-const env = process.env.NODE_ENV || 'development';
+const env = process.env.NODE_ENV || 'production';
 
 //create variables
 const files = {
@@ -78,13 +82,24 @@ function jsTask(){
 }
 
 // Image task: optimize images for production
+// https://www.npmjs.com/package/gulp-imagemin
 function imgTask(){
   return src(files.imgPath)
-    .pipe(gulpif(env === 'production', imagemin({
-      progressive: true,
-      svgoPlugins: [{ removeViewBox: false }],
-      use: [pngcrush()]
-    })))
+    .pipe(gulpif(env === 'production', imagemin([
+      imagemin.gifsicle({interlaced: true}),
+      imagemin.mozjpeg({quality: 75, progressive: true}),
+      imagemin.optipng({optimizationLevel: 5}),
+      imagemin.svgo({
+          plugins: [
+              {removeViewBox: false},
+              {cleanupIDs: false}
+          ]
+      })
+    ],
+    {
+      verbose: true
+    }
+  )))
     .pipe(gulpif(env === 'production', dest(outputDir + 'images')));
 }
 
