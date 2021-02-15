@@ -10,18 +10,9 @@ const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const imagemin = require('gulp-imagemin');
-// const pngcrush = require('imagemin-pngcrush');
-// const imagemin = require('imagemin');
-// const imageminJpegtran = require('imagemin-jpegtran');
-// const imageminPngquant = require('imagemin-pngquant');
-
 const gulpif = require('gulp-if');
 const browserSync = require('browser-sync').create();
 var replace = require('gulp-replace');
-
-//create environment variable
-// https://nodejs.org/dist/latest-v8.x/docs/api/process.html#process_process_env
-const env = process.env.NODE_ENV || 'production';
 
 //create variables
 const files = {
@@ -38,6 +29,10 @@ const files = {
 //other vars
 let cbString; //to use in cacheBust
 let outputDir; //for output directory
+
+//create environment variable
+// https://nodejs.org/dist/latest-v8.x/docs/api/process.html#process_process_env
+const env = process.env.NODE_ENV || 'production';
 
 //output directory check
 if (env === 'development') {
@@ -57,7 +52,6 @@ if (env === 'development') {
 // HTML task: cacheBust hack in dev and uglify if prod
 function htmlTask(){
   cbString = new Date().getTime();
-  //console.log(cbString);
   return src(files.htmlPath)
       .pipe(gulpif(env === 'development', replace(/cb=\d+/g, 'cb=' + cbString)))
       .pipe(dest(outputDir));
