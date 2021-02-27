@@ -118,12 +118,14 @@ function server() {
         index: "index.html"
         //directory: true
     },
+
+    port: 8080, //<-- changing default port (default:3000);
+    open: false, //<-- enable to prevent opening browser
+
     /* 
     Open in specific browser
     (On MacOS check Applications folder for name of app) */
-    browser: "FirefoxDeveloperEdition",
-    port: 8080, //<-- changing default port (default:3000);
-    open: false //<-- enable to prevent opening browser
+    browser: "FirefoxDeveloperEdition"
   });
 }
 
