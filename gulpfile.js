@@ -106,7 +106,7 @@ function watchTask(){
   //now watch each file
   watch(files.htmlPath, htmlTask).on('change', browserSync.reload);
   watch(files.scssPath, series(scssTask, htmlTask)).on('change', browserSync.reload);
-  watch(files.jsPath, jsTask).on('change', browserSync.reload);
+  watch(files.jsPath, series(jsTask, htmlTask)).on('change', browserSync.reload);
   watch(files.imgPath, imgTask).on('change', browserSync.reload);
 }
 
